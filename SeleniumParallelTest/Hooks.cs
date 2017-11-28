@@ -21,15 +21,19 @@ namespace SeleniumParallelTest
         private BrowerType _browserType;
 
 
-        public Hooks(BrowerType browser)
-        {
-            _browserType = browser;
-        }
+        //public Hooks(BrowerType browser)
+        //{
+        //    _browserType = browser;
+        //}
 
 
         [SetUp]
         public void InitializeTest()
         {
+            var browser = TestContext.Parameters.Get("Browser");
+            System.Console.WriteLine("The browser is " + browser);
+
+
             ChooseDriverInstance(_browserType);
         }
 
@@ -42,7 +46,7 @@ namespace SeleniumParallelTest
             else if (browserType == BrowerType.Firefox)
             {
                 //FirefoxDriverService service = FirefoxDriverService.CreateDefaultService(driverDir, "geckodriver.exe");
-                //service.FirefoxBinaryPath = @"C:\Program Files (x86)\Mozilla Firefox\firefox.exe";
+                //service.FirefoxBinaryPath = @"C:\Program Files\Mozilla Firefox\firefox.exe";
                 //service.HideCommandPromptWindow = true;
                 //service.SuppressInitialDiagnosticInformation = true;
                 //Driver = new FirefoxDriver(service);
